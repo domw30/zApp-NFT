@@ -1,7 +1,9 @@
-import { providers } from "ethers";
+//- React Imports
 import { createContext, FC, ReactNode, useMemo } from "react";
 
-import * as zfi from "@zero-tech/zfi-sdk";
+//- Library Imports
+import { providers } from "ethers";
+
 import * as zns from "@zero-tech/zns-sdk";
 
 import {
@@ -9,18 +11,11 @@ import {
   Network,
   NETWORK_CONFIGS,
 } from "../constants/networks";
-import { USER_ADDRESS } from "../constants/addresses";
 
-// @TODO: use proper provider typings from ethers instead of any
 interface ZnsSdkProviderProps {
   provider?: providers.Web3Provider;
   children: ReactNode;
 }
-
-// const defaultConfig =
-//   DEFAULT_NETWORK === Network.MAINNET
-//     ? zns.configuration.mainnetConfiguration
-//     : zns.configuration.rinkebyConfiguration;
 
 const defaultConfig = zns.configuration.rinkebyConfiguration;
 

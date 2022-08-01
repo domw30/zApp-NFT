@@ -3,36 +3,20 @@
  * will build or run.
  */
 
+//- React Imports
 import { FC } from "react";
+
+//- Types Imports
 import { AppProps } from "./lib/types/app";
 
-import { parseRoute } from "./lib/util/routes";
-
-import TabNav, { Tab } from "zero-ui/src/components/TabNav";
-
-import PoolsPage from "./pages/Pools";
-import DepositsPage from "./pages/Deposits";
-import { useQueryClient } from "react-query";
+//- Page Imports
+import { ZNS } from "./pages";
 
 const App: FC<AppProps> = ({ provider, route }) => {
-  console.log("prov (zfi-dapp):", provider);
+  console.log("prov (nft-dapp):", provider);
   return (
     <main>
-      <TabNav
-        defaultValue={"Pools"}
-        tabs={[
-          {
-            text: "Pools",
-            to: "/pools",
-            content: <PoolsPage />,
-          },
-          {
-            text: "Deposits",
-            to: "/deposits",
-            content: <DepositsPage />,
-          },
-        ]}
-      />
+      <ZNS />
     </main>
   );
 };
