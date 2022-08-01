@@ -1,6 +1,6 @@
 //- Lib Imports
-import { useDomainMetrics } from "lib/hooks/useDomainMetrics";
-import { formatEthers } from "lib/util/number";
+import { useDomainMetrics } from "../../lib/hooks/useDomainMetrics";
+import { formatEthers } from "../../lib/util/number";
 
 //- Style Imports
 import styles from "./ZNS.module.scss";

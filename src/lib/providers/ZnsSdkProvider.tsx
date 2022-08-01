@@ -10,7 +10,7 @@ import {
   DEFAULT_NETWORK,
   Network,
   NETWORK_CONFIGS,
-} from "lib/constants/networks";
+} from "../constants/networks";
 
 interface ZnsSdkProviderProps {
   provider?: providers.Web3Provider;
