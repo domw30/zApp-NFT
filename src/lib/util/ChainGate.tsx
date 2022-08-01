@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { Network } from "../constants/networks";
+import { Network } from "lib/constants/networks";
 
 interface ChainGateProps {
   chainId: number;

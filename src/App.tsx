@@ -7,10 +7,10 @@
 import { FC } from "react";
 
 //- Types Imports
-import { AppProps } from "./lib/types/app";
+import { AppProps } from "lib/types/app";
 
 //- Page Imports
-import ZNS from "./pages/ZNS/ZNS";
+import ZNS from "pages/ZNS/ZNS";
 
 const App: FC<AppProps> = ({ provider, route }) => {
   console.log("prov (nft-dapp):", provider);

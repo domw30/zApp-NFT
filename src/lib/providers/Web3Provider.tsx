@@ -1,6 +1,6 @@
 import { providers } from "ethers";
 import { FC, createContext, ReactNode } from "react";
-import { USER_ADDRESS } from "../constants/addresses";
+import { USER_ADDRESS } from "lib/constants/addresses";
 
 interface Web3ProviderProps {
   provider?: providers.Web3Provider;
