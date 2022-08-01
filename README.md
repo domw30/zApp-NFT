@@ -1,6 +1,6 @@
-# zFi dApp
+# MarketPlace NFT dApp
 
-This is the zFi dApp, ported from zNS-dapp's "Staking" app.
+This is the Marketplace NFT dApp, ported from zNS-dapp's "Market" app.
 
 ## Running Locally
 
