@@ -14,9 +14,11 @@ import ZNS from "./pages/ZNS/ZNS";
 
 const App: FC<AppProps> = ({ provider, route }) => {
   console.log("prov (nft-dapp):", provider);
+  console.log("ROUTE", route);
+
   return (
     <main>
-      <ZNS />
+      <ZNS route={route} />
     </main>
   );
 };

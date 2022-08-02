@@ -1,29 +1,34 @@
 //- Lib Imports
 import { useDomainMetrics } from "../../lib/hooks/useDomainMetrics";
-import { formatEthers, formatNumber } from "../../lib/util/number";
+import { formatEthers } from "../../lib/util/number";
 import { useDomain } from "../../lib/hooks/useDomain";
+import { useDomainMetadata } from "../../lib/hooks/useDomainMetaData";
+import { getDomainId } from "../../lib/util/domains";
 
 //- Style Imports
 import styles from "./ZNS.module.scss";
 
-const ZNS = () => {
-  const { tradeData } = useDomainMetrics(
-    "0x98a5dd4acd86ecb52b5a7f9b2044c531a96a45b4552b9484fce54ac38b0cb154"
-  );
+const ZNS = ({ route }) => {
+  const domainId = getDomainId(route);
 
-  const { domainData } = useDomain(
-    "0x98a5dd4acd86ecb52b5a7f9b2044c531a96a45b4552b9484fce54ac38b0cb154"
-  );
+  const { tradeData } = useDomainMetrics(domainId);
+
+  const { domain } = useDomain(domainId);
+
+  const { domainMetadata } = useDomainMetadata(domain?.metadataUri);
 
   console.log(tradeData);
-  console.log("DOMAINDATA", domainData);
+  console.log("domain", domain);
+  console.log("META", domainMetadata);
 
-  const domain = () => {
+  const domainData = () => {
     return (
       <>
-        <div>Name: {domainData?.name}</div>
-        <div>Owner: {domainData?.owner}</div>
-        <div>Creator: {domainData?.minter}</div>
+        <div>Name: {domain?.name}</div>
+        <div>Owner: {domain?.owner}</div>
+        <div>Creator: {domain?.minter}</div>
+        <div>ID: {domain?.id}</div>
+        <div>BIDS: {tradeData?.numberOfBids}</div>
       </>
     );
   };
@@ -60,7 +65,7 @@ const ZNS = () => {
   return (
     <>
       <div className={styles.Container}>
-        {domain()}
+        {domainData()}
         {nftStats()}
       </div>
     </>

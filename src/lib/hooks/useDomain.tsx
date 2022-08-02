@@ -9,7 +9,7 @@ import { useZnsSdk } from "./useZnsSdk";
 import { Domain } from "@zero-tech/zns-sdk/lib/types";
 
 export interface UseDomainReturn {
-  domainData: Domain | undefined;
+  domain: Domain | undefined;
   isLoading: boolean;
 }
 
@@ -18,7 +18,7 @@ export const useDomain = (domainId: string): UseDomainReturn => {
   const sdk = useZnsSdk();
 
   // State
-  const [domainData, setDomainData] = useState<Domain | undefined>();
+  const [domain, setDomain] = useState<Domain | undefined>();
 
   // Query
   const { isLoading } = useQuery(
@@ -26,9 +26,9 @@ export const useDomain = (domainId: string): UseDomainReturn => {
     async () => {
       try {
         const data = await sdk.getDomainById(domainId);
-        setDomainData(data);
+        setDomain(data);
       } catch (error) {
-        // disable error loging in browser console
+        // disable error logging in browser console
       }
     },
     {
@@ -39,7 +39,7 @@ export const useDomain = (domainId: string): UseDomainReturn => {
   );
 
   return {
-    domainData,
+    domain,
     isLoading,
   };
 };
