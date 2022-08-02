@@ -17,10 +17,12 @@ const ZNS = ({ route }) => {
 
   const { domain, isLoading: isDomainDataLoading } = useDomain(domainId);
 
-  const { domainMetadata, isLoading: isSubdomainDataLoading } =
-    useDomainMetadata(domain?.metadataUri);
+  const { domainMetadata, isLoading: isMetadataLoading } = useDomainMetadata(
+    domain?.metadataUri
+  );
 
-  const { subdomainData } = useSubdomainData(domainId);
+  const { subdomainData, isLoading: isSubdomainDataLoading } =
+    useSubdomainData(domainId);
 
   console.log(domainMetrics);
   console.log("domain", domain);
@@ -48,15 +50,15 @@ const ZNS = ({ route }) => {
 
     return (
       <>
-        <div>BIDS: {domainMetrics?.numberOfBids}</div>
+        <div>Bids: {domainMetrics?.numberOfBids}</div>
         <div>
-          LAST SALE:{" "}
+          Last Sale:{" "}
           {domainMetrics?.lastSale
             ? `${formatEthers(domainMetrics?.lastSale)} WILD`
             : "No sales"}
         </div>
         <div>
-          VOLUME:{" "}
+          Volume:{" "}
           {(domainMetrics?.volume as any)?.all
             ? `${formatEthers((domainMetrics?.volume as any)?.all)} WILD`
             : String(0)}
@@ -72,19 +74,31 @@ const ZNS = ({ route }) => {
 
     return (
       <>
-        <div>ITEMS: {domainMetrics?.items}</div>
+        <div>Items: {domainMetrics?.items}</div>
         <div>
-          FLOOR PRICE:{" "}
+          Floor Price:{" "}
           {domainMetrics?.lowestSale
             ? `${formatEthers(domainMetrics?.lowestSale)} WILD`
             : "No sales"}
         </div>
         <div>
-          VOLUME:{" "}
+          Volume:{" "}
           {(domainMetrics?.volume as any)?.all
             ? `${formatEthers((domainMetrics?.volume as any)?.all)} WILD`
             : String(0)}
         </div>
+      </>
+    );
+  };
+
+  const metadata = () => {
+    if (isMetadataLoading) {
+      return "data loading....";
+    }
+
+    return (
+      <>
+        <div>Metadata Name: {domainMetadata?.title}</div>
       </>
     );
   };
@@ -96,7 +110,7 @@ const ZNS = ({ route }) => {
 
     return subdomainData?.map((sub) => (
       <div key={sub.id}>
-        <div>SUBDOMAIN NAME: {sub.name}</div>
+        <div>Subdomain Title: {sub.name}</div>
         <br />
       </div>
     ));
@@ -136,16 +150,17 @@ const ZNS = ({ route }) => {
   return (
     <>
       <div className={styles.Container}>
-        Current Domain Data:
+        CURRENT DOMAIN DATA:
         {domainData()}
+        {metadata()}
         <br />
-        Metrics Data NFT View:
+        METRICS DATA NFT VIEW:
         {metricsNFTView()}
         <br />
-        Metrics Data Subdomains:
+        METRICS DATA SUBDOMAIN:
         {metricsSubdomain()}
         <br />
-        Subdomains Data:
+        SUBDOMAINS DATA:
         {subdomains()}
         {/* {nftStats()} */}
       </div>
