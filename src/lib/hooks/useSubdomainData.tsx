@@ -6,29 +6,27 @@ import { useQuery } from "react-query";
 import { useZnsSdk } from "./useZnsSdk";
 
 //- Library Imports
-import { DomainMetrics } from "@zero-tech/zns-sdk/lib/types";
+import { Domain } from "@zero-tech/zns-sdk/lib/types";
 
-export interface UseDomainMetricsReturn {
-  domainMetrics: DomainMetrics | undefined;
+export interface useSubdomainDataReturn {
+  subdomainData: Domain[] | undefined;
   isLoading: boolean;
 }
 
-export const useDomainMetrics = (domainId: string): UseDomainMetricsReturn => {
+export const useSubdomainData = (domainId: string): useSubdomainDataReturn => {
   // SDK
   const sdk = useZnsSdk();
 
   // State
-  const [domainMetrics, setDomainMetrics] = useState<
-    DomainMetrics | undefined
-  >();
+  const [subdomainData, setSubdomainData] = useState<Domain[] | undefined>();
 
   // Query
   const { isLoading } = useQuery(
-    `domain-metrics-${domainId}`,
+    `domain-subdomains-${domainId}`,
     async () => {
       try {
-        const metricsData = await sdk.getDomainMetrics([domainId]);
-        setDomainMetrics(metricsData[domainId]);
+        const subdomains = await sdk.getSubdomainsById(domainId);
+        setSubdomainData(subdomains);
       } catch (error) {
         // disable error loging in browser console
       }
@@ -41,7 +39,7 @@ export const useDomainMetrics = (domainId: string): UseDomainMetricsReturn => {
   );
 
   return {
-    domainMetrics,
+    subdomainData,
     isLoading,
   };
 };
