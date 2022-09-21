@@ -1,5 +1,7 @@
 Development moved to the following repo: [zApp-NFTs - MAIN](https://github.com/zer0-os/zApp-NFTs)
 
+zOS - [zOS - MAIN](https://github.com/zer0-os/zOS)
+
 # MarketPlace NFT dApp
 
 This is the Marketplace NFT dApp, ported from zNS-dapp's "Market" app.
