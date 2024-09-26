@@ -1,0 +1,44 @@
+@use "zero-ui/src/styles/dimensions";
+@use "zero-ui/src/styles/colors";
+@use "zero-ui/src/styles/typography";
+@use "zero-ui/src/styles/borders";
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+
+  .Stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    .StatContainer {
+      border-radius: #{borders.$radius-primary};
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 16px;
+      min-height: 92px;
+      height: 100%;
+      background: #{colors.$purple-10};
+      box-sizing: border-box;
+      width: 100%;
+      margin: 16px 16px 16px 0;
+
+      .StatsFieldName {
+        color: #{colors.$grey-lighter-2};
+        font-size: #{typography.$size-tiny};
+        line-height: 15px;
+        margin-bottom: 2px;
+      }
+
+      .StatsTitle {
+        font-weight: bold;
+        font-size: #{typography.$size-medium};
+        line-height: 22px;
+        margin: 2px 0px;
+      }
+    }
+  }
+}
